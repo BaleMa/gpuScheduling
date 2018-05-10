@@ -13,7 +13,7 @@ class GpuInfo(object):
 class Cluster(object):
     def __init__(self, num, martix):
         self.GPUNum = num
-        self.GPUS = range(0,num)
+        self.GPUS = numpy.arange(0,num,1,dtype=int)
         self.GPUMartix = martix
 #numpy.zeros(num, dtype=float)
 
