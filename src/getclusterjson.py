@@ -2,6 +2,55 @@ import json
 import requests
 import sys
 
+
+class JSONObjecet:
+    def __init__(self, d):
+        self.__dict__ = d
+
+
+
+def getiterJson(json, str, resultlist):
+    if (isinstance(json, dict)):
+        for key in json:
+            if (key == str):
+                print(key + ':', json[key])
+#                resultlist.append({key,json[key]})
+                return {key:json[key]}
+            else:
+                getiterJson(json[key], str, resultlist)
+    elif (isinstance(json, list)):
+        for i in range(len(json)):
+            temp = getiterJson(json[i], str, resultlist)
+            if temp != '':
+                resultlist[i] += resultlist[i],temp
+    else:
+        pass
+    return
+
+'''
+
+def getJSON(json, str, returndict):
+    unikey = ''
+    if( isinstance(json,dict) ):
+        for key in json:
+            if(key == str):
+                unikey += key
+                print('str:',unikey+':', json[key])
+                returndict.setdefault(unikey, json[key])
+            getJSON(json[key],str,returndict)
+
+    elif ( isinstance(json, list) ):
+        for i in range( len(json) ):
+            unikey = i
+            print(i)
+            getJSON(json[i],str, returndict)
+    else:
+        pass
+    return 0
+
+'''
+
+
 print ("please input job name")
 #print "args",sys.argv
 
@@ -33,6 +82,7 @@ print (r.status_code)
 if r.status_code == 200:
     print(r.text)
     data = json.loads(r.text)
+    print('data' ,type(data))
     #print data['taskRoles']['mnist']['taskStatuses'][0]['containerIp'] + ':9100'
 
     #print data['taskRoles']['mnist']['taskStatuses']
