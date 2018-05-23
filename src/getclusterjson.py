@@ -88,7 +88,23 @@ if r.status_code == 200:
     #print data['taskRoles']['mnist']['taskStatuses']
 
     #for index in range(len(data.taskRoles[taskRole].taskStatuses))
-print ( data )
+    result = list()
+    getiterJson(data,'nodeHostName', result)
+    print(result)
+    getiterJson(data,'availableGPUs', result)
+    print(result)
+
+'''
+for nodek in data:
+    print(nodek)
+    #print(nodev)
+    print(type(nodek),type(data[nodek]))
+    print(data[nodek])
+    #print(type(nodev))
+'''
+
+
+
 '''
     for taskRole in data['taskRoles']:
         print taskRole['taskRoles']

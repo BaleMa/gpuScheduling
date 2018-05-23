@@ -52,7 +52,6 @@ for i in range(GPUNUM):
         nestlist.append([i,j,martix[i,j]])
 print(nestlist)
 
-'''
 #需要添加错误处理
 requestGPUNumber = input()
 requestGPUNumber = int(requestGPUNumber)
@@ -72,15 +71,18 @@ else:
     sumofBandWidth = 0
     selectedGPUS = tuple()
     mutipleArray = list(itertools.combinations(gpuArray, requestGPUNumber))
+    print(mutipleArray)
     for Tuple in mutipleArray:
         doubleArray = list(itertools.combinations(Tuple, 2))
+        print(doubleArray)
         temp = 0
         for doubleTuple in doubleArray:
-            temp = +martix[doubleTuple[0],doubleTuple[1]]
-            if temp > sumofBandWidth:
-                selectedGPUS = Tuple
+            temp = temp + martix[doubleTuple[0],doubleTuple[1]] + martix[doubleTuple[1],doubleTuple[0]]
+            print(temp)
+        if temp > sumofBandWidth:
+            sumofBandWidth = temp
+            selectedGPUS = Tuple
 
 
     print(selectedGPUS)
 
-'''
